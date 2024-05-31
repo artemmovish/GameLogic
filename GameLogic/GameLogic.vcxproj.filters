@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Главное меню">
+      <UniqueIdentifier>{3584447b-1824-4f67-b740-62c28ccf79e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Уровень 1">
+      <UniqueIdentifier>{291d7cc1-122a-43d2-a4c6-94d900345c0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Уровень 2">
+      <UniqueIdentifier>{8e0afff1-6038-47ce-acd3-c29b3248f682}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Уровень 3">
+      <UniqueIdentifier>{1057b28b-69d7-4b7d-8486-6ec376d7e266}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Уровень 4">
+      <UniqueIdentifier>{3af11f22-2790-4f85-b442-d4a0b678584e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Уровень 5">
+      <UniqueIdentifier>{69b5b880-3850-4bb2-8943-d295108fa000}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MainStart.cpp">
+      <Filter>Главное меню</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelOne.cpp">
+      <Filter>Уровень 1</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelTwo.cpp">
+      <Filter>Уровень 2</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelThree.cpp">
+      <Filter>Уровень 3</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelFour.cpp">
+      <Filter>Уровень 4</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelFive.cpp">
+      <Filter>Уровень 5</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MainStart.h">
+      <Filter>Главное меню</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelOne.h">
+      <Filter>Уровень 1</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelTwo.h">
+      <Filter>Уровень 2</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelThree.h">
+      <Filter>Уровень 3</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelFour.h">
+      <Filter>Уровень 4</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelFive.h">
+      <Filter>Уровень 5</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
