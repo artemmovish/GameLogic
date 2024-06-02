@@ -24,6 +24,21 @@ void GameLogic::LevelOne::ClickBut(System::Object^ sender, System::EventArgs^ e)
 		Button^ button = dynamic_cast<Button^>(sender);
 		if (button != nullptr)
 		{
+			//Сохранение панели
+			panelOne = button->Parent;
+			// копирование кнопки из шаблона (под формой)
+			Button^ but = gcnew Button();
+			but = copy_button(FireDown);
+			panelI->Controls->Add(but);
+			// Сохранение Tag кнопки
+			try
+			{
+				tagButton = button->Tag->ToString();
+			}
+			catch (Exception^ ex)
+			{
+
+			}
 			// Удаление кнопки
 			delete button;
 		}
@@ -43,6 +58,8 @@ void GameLogic::LevelOne::ClickPanel(System::Object^ sender, System::EventArgs^ 
 		FlowLayoutPanel^ panel = dynamic_cast<FlowLayoutPanel^>(sender);
 		if (panel != nullptr)
 		{
+			panelI->Controls->Clear();
+			panelTwo = panel;
 			if (panel->Width < 30)
 			{
 				Button^ but = gcnew Button();
@@ -55,6 +72,39 @@ void GameLogic::LevelOne::ClickPanel(System::Object^ sender, System::EventArgs^ 
 				but = copy_button(FireDown);
 				panel->Controls->Add(but);
 			}
+			try
+			{
+				if (tagButton == panel->Tag->ToString())
+				{
+					MessageBox::Show("Вы победили");
+					this->Close();
+				}
+				else
+				{
+					if (!checkRule->Checked)
+					{
+						MessageBox::Show("Вы проиграли");
+						back();
+					}
+					else
+					{
+						back();
+					}
+				}
+			}
+			catch (Exception^ ex)
+			{
+				if (!checkRule->Checked)
+				{
+					MessageBox::Show("Вы проиграли");
+					back();
+				}
+				else
+				{
+					back();
+				}
+			}
+			
 		}
 		matches--;
 	}
@@ -66,10 +116,25 @@ void GameLogic::LevelOne::ClickPanel(System::Object^ sender, System::EventArgs^ 
 
 void GameLogic::LevelOne::Result_Test()
 {
-	if (!flowLayoutPanel7->Controls->Count)
+	
+}
+
+void GameLogic::LevelOne::back()
+{
+	tagButton = "";
+	if (panelOne->Width < 30)
 	{
-		
+		Button^ but = gcnew Button();
+		but = copy_button(FireUp);
+		panelOne->Controls->Add(but);
 	}
+	else
+	{
+		Button^ but = gcnew Button();
+		but = copy_button(FireDown);
+		panelOne->Controls->Add(but);
+	}
+	panelTwo->Controls->Clear();
 }
 
 Button^ GameLogic::LevelOne::copy_button(Button^ originalButton)
@@ -105,5 +170,11 @@ Button^ GameLogic::LevelOne::copy_button(Button^ originalButton)
 	newButton->Click += gcnew EventHandler(this, &LevelOne::ClickBut);
 
 	return newButton;
+}
+
+System::Void GameLogic::LevelOne::button1_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	MessageBox::Show("Нужно переместить только одну спичку в выложенном спичками арифметическом примере «8+3-4=0» так, чтобы получилось верное равенство (можно менять и знаки, цифры).");
+	return System::Void();
 }
 

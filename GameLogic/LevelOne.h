@@ -158,11 +158,12 @@ private: System::Windows::Forms::Button^ FireUp;
 	private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel44;
 	private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel45;
 	private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel46;
+private: System::Windows::Forms::FlowLayoutPanel^ panelI;
 
 
 
 
-private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel51;
+
 private: System::Windows::Forms::Button^ button17;
 private: System::Windows::Forms::Button^ button5;
 private: System::Windows::Forms::Button^ button3;
@@ -192,6 +193,9 @@ private: System::Windows::Forms::Button^ button15;
 private: System::Windows::Forms::Button^ button28;
 private: System::Windows::Forms::Button^ FireDown;
 private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel25;
+private: System::Windows::Forms::CheckBox^ checkRule;
+private: System::Windows::Forms::Button^ button1;
+
 
 
 
@@ -248,7 +252,7 @@ private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel25;
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(LevelOne::typeid));
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
-			this->flowLayoutPanel51 = (gcnew System::Windows::Forms::FlowLayoutPanel());
+			this->panelI = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			this->flowLayoutPanel1 = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			this->button17 = (gcnew System::Windows::Forms::Button());
 			this->flowLayoutPanel2 = (gcnew System::Windows::Forms::FlowLayoutPanel());
@@ -312,6 +316,8 @@ private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel25;
 			this->button28 = (gcnew System::Windows::Forms::Button());
 			this->FireDown = (gcnew System::Windows::Forms::Button());
 			this->flowLayoutPanel25 = (gcnew System::Windows::Forms::FlowLayoutPanel());
+			this->checkRule = (gcnew System::Windows::Forms::CheckBox());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->groupBox1->SuspendLayout();
 			this->flowLayoutPanel1->SuspendLayout();
 			this->flowLayoutPanel2->SuspendLayout();
@@ -344,7 +350,7 @@ private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel25;
 			// 
 			// groupBox1
 			// 
-			this->groupBox1->Controls->Add(this->flowLayoutPanel51);
+			this->groupBox1->Controls->Add(this->panelI);
 			this->groupBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->groupBox1->Location = System::Drawing::Point(12, 12);
@@ -354,13 +360,13 @@ private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel25;
 			this->groupBox1->TabStop = false;
 			this->groupBox1->Text = L"Инвентарь";
 			// 
-			// flowLayoutPanel51
+			// panelI
 			// 
-			this->flowLayoutPanel51->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->flowLayoutPanel51->Location = System::Drawing::Point(3, 26);
-			this->flowLayoutPanel51->Name = L"flowLayoutPanel51";
-			this->flowLayoutPanel51->Size = System::Drawing::Size(163, 22);
-			this->flowLayoutPanel51->TabIndex = 16;
+			this->panelI->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->panelI->Location = System::Drawing::Point(3, 26);
+			this->panelI->Name = L"panelI";
+			this->panelI->Size = System::Drawing::Size(163, 22);
+			this->panelI->TabIndex = 16;
 			// 
 			// flowLayoutPanel1
 			// 
@@ -411,6 +417,7 @@ private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel25;
 			this->button5->Name = L"button5";
 			this->button5->Size = System::Drawing::Size(21, 154);
 			this->button5->TabIndex = 4;
+			this->button5->Tag = L"2";
 			this->button5->UseVisualStyleBackColor = false;
 			this->button5->Click += gcnew System::EventHandler(this, &LevelOne::ClickBut);
 			// 
@@ -437,6 +444,7 @@ private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel25;
 			this->button3->Name = L"button3";
 			this->button3->Size = System::Drawing::Size(21, 154);
 			this->button3->TabIndex = 4;
+			this->button3->Tag = L"2";
 			this->button3->UseVisualStyleBackColor = false;
 			this->button3->Click += gcnew System::EventHandler(this, &LevelOne::ClickBut);
 			// 
@@ -540,7 +548,8 @@ private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel25;
 			this->button6->Location = System::Drawing::Point(3, 3);
 			this->button6->Name = L"button6";
 			this->button6->Size = System::Drawing::Size(21, 154);
-			this->button6->TabIndex = 4;
+			this->button6->TabIndex = 3;
+			this->button6->Tag = L"3";
 			this->button6->UseVisualStyleBackColor = false;
 			this->button6->Click += gcnew System::EventHandler(this, &LevelOne::ClickBut);
 			// 
@@ -552,7 +561,7 @@ private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel25;
 			this->FireUp->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->FireUp->FlatAppearance->BorderSize = 0;
 			this->FireUp->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->FireUp->Location = System::Drawing::Point(253, 667);
+			this->FireUp->Location = System::Drawing::Point(263, 570);
 			this->FireUp->Name = L"FireUp";
 			this->FireUp->Size = System::Drawing::Size(21, 154);
 			this->FireUp->TabIndex = 3;
@@ -831,6 +840,7 @@ private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel25;
 			this->flowLayoutPanel33->Name = L"flowLayoutPanel33";
 			this->flowLayoutPanel33->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel33->TabIndex = 45;
+			this->flowLayoutPanel33->Tag = L"1";
 			this->flowLayoutPanel33->Click += gcnew System::EventHandler(this, &LevelOne::ClickPanel);
 			// 
 			// flowLayoutPanel34
@@ -856,6 +866,7 @@ private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel25;
 			this->button27->Name = L"button27";
 			this->button27->Size = System::Drawing::Size(154, 21);
 			this->button27->TabIndex = 9;
+			this->button27->Tag = L"1";
 			this->button27->UseVisualStyleBackColor = false;
 			this->button27->Click += gcnew System::EventHandler(this, &LevelOne::ClickBut);
 			// 
@@ -919,6 +930,7 @@ private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel25;
 			this->flowLayoutPanel37->Name = L"flowLayoutPanel37";
 			this->flowLayoutPanel37->Size = System::Drawing::Size(154, 24);
 			this->flowLayoutPanel37->TabIndex = 38;
+			this->flowLayoutPanel37->Tag = L"2";
 			this->flowLayoutPanel37->Click += gcnew System::EventHandler(this, &LevelOne::ClickPanel);
 			// 
 			// flowLayoutPanel38
@@ -1056,7 +1068,8 @@ private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel25;
 			this->flowLayoutPanel43->Location = System::Drawing::Point(1143, 263);
 			this->flowLayoutPanel43->Name = L"flowLayoutPanel43";
 			this->flowLayoutPanel43->Size = System::Drawing::Size(154, 24);
-			this->flowLayoutPanel43->TabIndex = 39;
+			this->flowLayoutPanel43->TabIndex = 3;
+			this->flowLayoutPanel43->Tag = L"3";
 			this->flowLayoutPanel43->Click += gcnew System::EventHandler(this, &LevelOne::ClickPanel);
 			// 
 			// flowLayoutPanel44
@@ -1145,7 +1158,7 @@ private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel25;
 			this->FireDown->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->FireDown->FlatAppearance->BorderSize = 0;
 			this->FireDown->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->FireDown->Location = System::Drawing::Point(280, 724);
+			this->FireDown->Location = System::Drawing::Point(290, 627);
 			this->FireDown->Name = L"FireDown";
 			this->FireDown->Size = System::Drawing::Size(154, 21);
 			this->FireDown->TabIndex = 51;
@@ -1162,12 +1175,36 @@ private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel25;
 			this->flowLayoutPanel25->TabIndex = 37;
 			this->flowLayoutPanel25->Click += gcnew System::EventHandler(this, &LevelOne::ClickPanel);
 			// 
+			// checkRule
+			// 
+			this->checkRule->AutoSize = true;
+			this->checkRule->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->checkRule->Location = System::Drawing::Point(189, 31);
+			this->checkRule->Name = L"checkRule";
+			this->checkRule->Size = System::Drawing::Size(409, 29);
+			this->checkRule->TabIndex = 53;
+			this->checkRule->Text = L"Не уведомлять о не правильном ответе";
+			this->checkRule->UseVisualStyleBackColor = true;
+			// 
+			// button1
+			// 
+			this->button1->Location = System::Drawing::Point(189, 12);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(87, 21);
+			this->button1->TabIndex = 54;
+			this->button1->Text = L"Условие";
+			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &LevelOne::button1_Click);
+			// 
 			// LevelOne
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->ClientSize = System::Drawing::Size(1335, 494);
+			this->ClientSize = System::Drawing::Size(1335, 490);
+			this->Controls->Add(this->button1);
+			this->Controls->Add(this->checkRule);
 			this->Controls->Add(this->FireDown);
 			this->Controls->Add(this->flowLayoutPanel39);
 			this->Controls->Add(this->flowLayoutPanel38);
@@ -1236,16 +1273,22 @@ private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel25;
 			this->flowLayoutPanel45->ResumeLayout(false);
 			this->flowLayoutPanel46->ResumeLayout(false);
 			this->ResumeLayout(false);
+			this->PerformLayout();
 
 		}
 #pragma endregion
 		int matches = 0;
+		String^ tagButton;
+		Control^ panelOne;
+		Control^ panelTwo;
 		// Метод для удаления кнопки
 		void delete_button(Button^ button);
 		void ClickBut(System::Object^ sender, System::EventArgs^ e);
 		void ClickPanel(System::Object^ sender, System::EventArgs^ e);
 		void Result_Test();
+		void back();
 		// Метод для создания копии кнопки
 		Button^ copy_button(Button^ originalButton);
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }

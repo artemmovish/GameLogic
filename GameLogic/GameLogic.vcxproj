@@ -81,6 +81,8 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies />
+      <SubSystem>Windows</SubSystem>
+      <EntryPointSymbol>main</EntryPointSymbol>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -146,8 +148,17 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="LevelFour.resx">
+      <DependentUpon>LevelFour.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LevelOne.resx">
       <DependentUpon>LevelOne.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LevelThree.resx">
+      <DependentUpon>LevelThree.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LevelTwo.resx">
+      <DependentUpon>LevelTwo.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainStart.resx">
       <DependentUpon>MainStart.h</DependentUpon>
