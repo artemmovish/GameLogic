@@ -1,5 +1,4 @@
 #pragma once
-
 namespace GameLogic {
 
 	using namespace System;
@@ -8,6 +7,8 @@ namespace GameLogic {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::IO;
+	using namespace System::Media;
 
 	/// <summary>
 	/// Сводка для LevelFour
@@ -15,12 +16,48 @@ namespace GameLogic {
 	public ref class LevelFour : public System::Windows::Forms::Form
 	{
 	public:
+		
 		LevelFour(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: добавьте код конструктора
-			//
+			StreamReader^ reader = gcnew StreamReader("volume.txt");
+			String^ num = reader->ReadLine();
+			reader->Close();
+
+			if (num == "1")
+			{
+				SoundPlayer^ player = gcnew SoundPlayer("friend-clock-2008.wav");
+				player->PlayLooping();
+
+			}
+
+			//Тема
+			StreamReader^ readert = gcnew StreamReader("theme.txt");
+			String^ numt = readert->ReadLine();
+			readert->Close();
+
+			if (numt == "1")
+			{
+			LevelThree:label1->ForeColor = Color::Black;
+				LevelFour::BackColor = Color::FromArgb(249, 250, 209);
+				LevelFour::label1->BackColor = Color::FromArgb(254, 242, 185);
+				LevelFour::groupBox1->ForeColor = Color::Black;
+				LevelFour::button_back->BackColor = Color::FromArgb(254, 219, 155);
+				LevelFour::button_back->ForeColor = Color::Black;
+				LevelFour::checkRule->ForeColor = Color::Black;
+
+			}
+			//тёмная тема
+			else
+			{
+				LevelFour::label1->ForeColor = Color::WhiteSmoke;
+				LevelFour::BackColor = Color::FromArgb(26, 26, 26);
+				LevelFour::label1->BackColor = Color::FromArgb(26, 26, 26);
+				LevelFour::groupBox1->ForeColor = Color::WhiteSmoke;
+				LevelFour::button_back->BackColor = Color::Gray;
+				LevelFour::button_back->ForeColor = Color::WhiteSmoke;
+				LevelFour::checkRule->ForeColor = Color::WhiteSmoke;
+			}
 		}
 
 	protected:
@@ -37,7 +74,7 @@ namespace GameLogic {
 
 	protected:
 
-	private: System::Windows::Forms::Button^ button1;
+
 	private: System::Windows::Forms::CheckBox^ checkRule;
 
 
@@ -138,6 +175,11 @@ namespace GameLogic {
 
 	private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel25;
 	private: System::Windows::Forms::Button^ button12;
+private: System::Windows::Forms::Label^ label1;
+private: System::Windows::Forms::Button^ button_back;
+private: System::Windows::Forms::Button^ fireI_;
+
+
 
 
 
@@ -160,7 +202,6 @@ namespace GameLogic {
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(LevelFour::typeid));
-			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->checkRule = (gcnew System::Windows::Forms::CheckBox());
 			this->groupBox1 = (gcnew System::Windows::Forms::GroupBox());
 			this->panelI = (gcnew System::Windows::Forms::FlowLayoutPanel());
@@ -204,6 +245,9 @@ namespace GameLogic {
 			this->flowLayoutPanel22 = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			this->flowLayoutPanel25 = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			this->button12 = (gcnew System::Windows::Forms::Button());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->button_back = (gcnew System::Windows::Forms::Button());
+			this->fireI_ = (gcnew System::Windows::Forms::Button());
 			this->groupBox1->SuspendLayout();
 			this->flowLayoutPanel31->SuspendLayout();
 			this->flowLayoutPanel8->SuspendLayout();
@@ -224,26 +268,16 @@ namespace GameLogic {
 			this->flowLayoutPanel25->SuspendLayout();
 			this->SuspendLayout();
 			// 
-			// button1
-			// 
-			this->button1->Location = System::Drawing::Point(9, 497);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(87, 21);
-			this->button1->TabIndex = 133;
-			this->button1->Text = L"Условие";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &LevelFour::button1_Click);
-			// 
 			// checkRule
 			// 
 			this->checkRule->AutoSize = true;
 			this->checkRule->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->checkRule->Location = System::Drawing::Point(9, 516);
+			this->checkRule->Location = System::Drawing::Point(394, 610);
 			this->checkRule->Name = L"checkRule";
-			this->checkRule->Size = System::Drawing::Size(409, 29);
+			this->checkRule->Size = System::Drawing::Size(426, 29);
 			this->checkRule->TabIndex = 132;
-			this->checkRule->Text = L"Не уведомлять о не правильном ответе";
+			this->checkRule->Text = L"Не уведомлять при неправильном ответе\r\n";
 			this->checkRule->UseVisualStyleBackColor = true;
 			// 
 			// groupBox1
@@ -251,7 +285,7 @@ namespace GameLogic {
 			this->groupBox1->Controls->Add(this->panelI);
 			this->groupBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->groupBox1->Location = System::Drawing::Point(12, 12);
+			this->groupBox1->Location = System::Drawing::Point(88, 102);
 			this->groupBox1->Name = L"groupBox1";
 			this->groupBox1->Size = System::Drawing::Size(489, 51);
 			this->groupBox1->TabIndex = 108;
@@ -274,7 +308,7 @@ namespace GameLogic {
 			this->FireDown->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->FireDown->FlatAppearance->BorderSize = 0;
 			this->FireDown->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->FireDown->Location = System::Drawing::Point(1140, 542);
+			this->FireDown->Location = System::Drawing::Point(876, 429);
 			this->FireDown->Name = L"FireDown";
 			this->FireDown->Size = System::Drawing::Size(154, 21);
 			this->FireDown->TabIndex = 137;
@@ -289,7 +323,7 @@ namespace GameLogic {
 			this->FireUp->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->FireUp->FlatAppearance->BorderSize = 0;
 			this->FireUp->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->FireUp->Location = System::Drawing::Point(1114, 497);
+			this->FireUp->Location = System::Drawing::Point(850, 384);
 			this->FireUp->Name = L"FireUp";
 			this->FireUp->Size = System::Drawing::Size(21, 154);
 			this->FireUp->TabIndex = 136;
@@ -301,7 +335,7 @@ namespace GameLogic {
 			this->flowLayoutPanel31->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel31->Controls->Add(this->button4);
 			this->flowLayoutPanel31->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel31->Location = System::Drawing::Point(188, 296);
+			this->flowLayoutPanel31->Location = System::Drawing::Point(264, 386);
 			this->flowLayoutPanel31->Name = L"flowLayoutPanel31";
 			this->flowLayoutPanel31->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel31->TabIndex = 173;
@@ -327,7 +361,7 @@ namespace GameLogic {
 			this->flowLayoutPanel8->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel8->Controls->Add(this->button16);
 			this->flowLayoutPanel8->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel8->Location = System::Drawing::Point(33, 269);
+			this->flowLayoutPanel8->Location = System::Drawing::Point(109, 359);
 			this->flowLayoutPanel8->Name = L"flowLayoutPanel8";
 			this->flowLayoutPanel8->Size = System::Drawing::Size(154, 24);
 			this->flowLayoutPanel8->TabIndex = 172;
@@ -352,7 +386,7 @@ namespace GameLogic {
 			// 
 			this->flowLayoutPanel9->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel9->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel9->Location = System::Drawing::Point(9, 296);
+			this->flowLayoutPanel9->Location = System::Drawing::Point(85, 386);
 			this->flowLayoutPanel9->Name = L"flowLayoutPanel9";
 			this->flowLayoutPanel9->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel9->TabIndex = 173;
@@ -363,7 +397,7 @@ namespace GameLogic {
 			this->flowLayoutPanel12->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel12->Controls->Add(this->button17);
 			this->flowLayoutPanel12->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel12->Location = System::Drawing::Point(33, 453);
+			this->flowLayoutPanel12->Location = System::Drawing::Point(109, 543);
 			this->flowLayoutPanel12->Name = L"flowLayoutPanel12";
 			this->flowLayoutPanel12->Size = System::Drawing::Size(154, 24);
 			this->flowLayoutPanel12->TabIndex = 174;
@@ -389,7 +423,7 @@ namespace GameLogic {
 			this->flowLayoutPanel36->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel36->Controls->Add(this->button3);
 			this->flowLayoutPanel36->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel36->Location = System::Drawing::Point(188, 111);
+			this->flowLayoutPanel36->Location = System::Drawing::Point(264, 201);
 			this->flowLayoutPanel36->Name = L"flowLayoutPanel36";
 			this->flowLayoutPanel36->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel36->TabIndex = 173;
@@ -415,7 +449,7 @@ namespace GameLogic {
 			this->flowLayoutPanel37->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel37->Controls->Add(this->button15);
 			this->flowLayoutPanel37->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel37->Location = System::Drawing::Point(33, 84);
+			this->flowLayoutPanel37->Location = System::Drawing::Point(109, 174);
 			this->flowLayoutPanel37->Name = L"flowLayoutPanel37";
 			this->flowLayoutPanel37->Size = System::Drawing::Size(154, 24);
 			this->flowLayoutPanel37->TabIndex = 172;
@@ -441,7 +475,7 @@ namespace GameLogic {
 			this->flowLayoutPanel39->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel39->Controls->Add(this->button2);
 			this->flowLayoutPanel39->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel39->Location = System::Drawing::Point(9, 111);
+			this->flowLayoutPanel39->Location = System::Drawing::Point(85, 201);
 			this->flowLayoutPanel39->Name = L"flowLayoutPanel39";
 			this->flowLayoutPanel39->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel39->TabIndex = 173;
@@ -468,7 +502,7 @@ namespace GameLogic {
 			this->flowLayoutPanel1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel1->Controls->Add(this->button7);
 			this->flowLayoutPanel1->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel1->Location = System::Drawing::Point(419, 296);
+			this->flowLayoutPanel1->Location = System::Drawing::Point(495, 386);
 			this->flowLayoutPanel1->Name = L"flowLayoutPanel1";
 			this->flowLayoutPanel1->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel1->TabIndex = 173;
@@ -494,7 +528,7 @@ namespace GameLogic {
 			this->flowLayoutPanel2->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel2->Controls->Add(this->button14);
 			this->flowLayoutPanel2->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel2->Location = System::Drawing::Point(264, 269);
+			this->flowLayoutPanel2->Location = System::Drawing::Point(340, 359);
 			this->flowLayoutPanel2->Name = L"flowLayoutPanel2";
 			this->flowLayoutPanel2->Size = System::Drawing::Size(154, 24);
 			this->flowLayoutPanel2->TabIndex = 172;
@@ -520,7 +554,7 @@ namespace GameLogic {
 			this->flowLayoutPanel3->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel3->Controls->Add(this->button6);
 			this->flowLayoutPanel3->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel3->Location = System::Drawing::Point(419, 111);
+			this->flowLayoutPanel3->Location = System::Drawing::Point(495, 201);
 			this->flowLayoutPanel3->Name = L"flowLayoutPanel3";
 			this->flowLayoutPanel3->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel3->TabIndex = 173;
@@ -546,7 +580,7 @@ namespace GameLogic {
 			this->flowLayoutPanel4->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel4->Controls->Add(this->button13);
 			this->flowLayoutPanel4->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel4->Location = System::Drawing::Point(264, 84);
+			this->flowLayoutPanel4->Location = System::Drawing::Point(340, 174);
 			this->flowLayoutPanel4->Name = L"flowLayoutPanel4";
 			this->flowLayoutPanel4->Size = System::Drawing::Size(154, 24);
 			this->flowLayoutPanel4->TabIndex = 172;
@@ -572,7 +606,7 @@ namespace GameLogic {
 			// 
 			this->flowLayoutPanel5->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel5->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel5->Location = System::Drawing::Point(240, 296);
+			this->flowLayoutPanel5->Location = System::Drawing::Point(316, 386);
 			this->flowLayoutPanel5->Name = L"flowLayoutPanel5";
 			this->flowLayoutPanel5->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel5->TabIndex = 173;
@@ -583,7 +617,7 @@ namespace GameLogic {
 			this->flowLayoutPanel6->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel6->Controls->Add(this->button5);
 			this->flowLayoutPanel6->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel6->Location = System::Drawing::Point(240, 111);
+			this->flowLayoutPanel6->Location = System::Drawing::Point(316, 201);
 			this->flowLayoutPanel6->Name = L"flowLayoutPanel6";
 			this->flowLayoutPanel6->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel6->TabIndex = 173;
@@ -609,7 +643,7 @@ namespace GameLogic {
 			this->flowLayoutPanel13->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel13->Controls->Add(this->button18);
 			this->flowLayoutPanel13->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel13->Location = System::Drawing::Point(264, 453);
+			this->flowLayoutPanel13->Location = System::Drawing::Point(340, 543);
 			this->flowLayoutPanel13->Name = L"flowLayoutPanel13";
 			this->flowLayoutPanel13->Size = System::Drawing::Size(154, 24);
 			this->flowLayoutPanel13->TabIndex = 174;
@@ -636,7 +670,7 @@ namespace GameLogic {
 			this->flowLayoutPanel17->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel17->Controls->Add(this->button9);
 			this->flowLayoutPanel17->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel17->Location = System::Drawing::Point(649, 296);
+			this->flowLayoutPanel17->Location = System::Drawing::Point(725, 386);
 			this->flowLayoutPanel17->Name = L"flowLayoutPanel17";
 			this->flowLayoutPanel17->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel17->TabIndex = 173;
@@ -662,7 +696,7 @@ namespace GameLogic {
 			this->flowLayoutPanel18->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel18->Controls->Add(this->button11);
 			this->flowLayoutPanel18->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel18->Location = System::Drawing::Point(494, 269);
+			this->flowLayoutPanel18->Location = System::Drawing::Point(570, 359);
 			this->flowLayoutPanel18->Name = L"flowLayoutPanel18";
 			this->flowLayoutPanel18->Size = System::Drawing::Size(154, 24);
 			this->flowLayoutPanel18->TabIndex = 172;
@@ -688,7 +722,7 @@ namespace GameLogic {
 			this->flowLayoutPanel19->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel19->Controls->Add(this->button8);
 			this->flowLayoutPanel19->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel19->Location = System::Drawing::Point(649, 111);
+			this->flowLayoutPanel19->Location = System::Drawing::Point(725, 201);
 			this->flowLayoutPanel19->Name = L"flowLayoutPanel19";
 			this->flowLayoutPanel19->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel19->TabIndex = 173;
@@ -714,7 +748,7 @@ namespace GameLogic {
 			this->flowLayoutPanel20->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel20->Controls->Add(this->button10);
 			this->flowLayoutPanel20->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel20->Location = System::Drawing::Point(494, 84);
+			this->flowLayoutPanel20->Location = System::Drawing::Point(570, 174);
 			this->flowLayoutPanel20->Name = L"flowLayoutPanel20";
 			this->flowLayoutPanel20->Size = System::Drawing::Size(154, 24);
 			this->flowLayoutPanel20->TabIndex = 172;
@@ -739,7 +773,7 @@ namespace GameLogic {
 			// 
 			this->flowLayoutPanel21->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel21->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel21->Location = System::Drawing::Point(470, 296);
+			this->flowLayoutPanel21->Location = System::Drawing::Point(546, 386);
 			this->flowLayoutPanel21->Name = L"flowLayoutPanel21";
 			this->flowLayoutPanel21->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel21->TabIndex = 173;
@@ -749,7 +783,7 @@ namespace GameLogic {
 			// 
 			this->flowLayoutPanel22->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel22->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel22->Location = System::Drawing::Point(470, 111);
+			this->flowLayoutPanel22->Location = System::Drawing::Point(546, 201);
 			this->flowLayoutPanel22->Name = L"flowLayoutPanel22";
 			this->flowLayoutPanel22->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel22->TabIndex = 173;
@@ -760,7 +794,7 @@ namespace GameLogic {
 			this->flowLayoutPanel25->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel25->Controls->Add(this->button12);
 			this->flowLayoutPanel25->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel25->Location = System::Drawing::Point(494, 453);
+			this->flowLayoutPanel25->Location = System::Drawing::Point(570, 543);
 			this->flowLayoutPanel25->Name = L"flowLayoutPanel25";
 			this->flowLayoutPanel25->Size = System::Drawing::Size(154, 24);
 			this->flowLayoutPanel25->TabIndex = 174;
@@ -781,11 +815,60 @@ namespace GameLogic {
 			this->button12->UseVisualStyleBackColor = false;
 			this->button12->Click += gcnew System::EventHandler(this, &LevelFour::ClickBut);
 			// 
+			// label1
+			// 
+			this->label1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(254)), static_cast<System::Int32>(static_cast<System::Byte>(242)),
+				static_cast<System::Int32>(static_cast<System::Byte>(185)));
+			this->label1->Font = (gcnew System::Drawing::Font(L"Calibri", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label1->Location = System::Drawing::Point(0, 0);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(833, 51);
+			this->label1->TabIndex = 175;
+			this->label1->Text = L"Уберите три спички так, чтобы получилось наименьшее возможное число.";
+			this->label1->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// button_back
+			// 
+			this->button_back->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(254)), static_cast<System::Int32>(static_cast<System::Byte>(219)),
+				static_cast<System::Int32>(static_cast<System::Byte>(155)));
+			this->button_back->FlatAppearance->BorderSize = 0;
+			this->button_back->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button_back->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button_back->Location = System::Drawing::Point(17, 610);
+			this->button_back->Name = L"button_back";
+			this->button_back->Size = System::Drawing::Size(230, 42);
+			this->button_back->TabIndex = 176;
+			this->button_back->Text = L"Вернуться";
+			this->button_back->UseVisualStyleBackColor = false;
+			this->button_back->Click += gcnew System::EventHandler(this, &LevelFour::button_back_Click);
+			// 
+			// fireI_
+			// 
+			this->fireI_->BackColor = System::Drawing::Color::Transparent;
+			this->fireI_->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"fireI_.BackgroundImage")));
+			this->fireI_->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->fireI_->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->fireI_->FlatAppearance->BorderSize = 0;
+			this->fireI_->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->fireI_->Location = System::Drawing::Point(903, 384);
+			this->fireI_->Name = L"fireI_";
+			this->fireI_->Size = System::Drawing::Size(154, 21);
+			this->fireI_->TabIndex = 177;
+			this->fireI_->UseVisualStyleBackColor = false;
+			this->fireI_->Click += gcnew System::EventHandler(this, &LevelFour::backClick);
+			// 
 			// LevelFour
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(684, 549);
+			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(249)), static_cast<System::Int32>(static_cast<System::Byte>(250)),
+				static_cast<System::Int32>(static_cast<System::Byte>(209)));
+			this->ClientSize = System::Drawing::Size(833, 674);
+			this->Controls->Add(this->fireI_);
+			this->Controls->Add(this->button_back);
+			this->Controls->Add(this->label1);
 			this->Controls->Add(this->flowLayoutPanel25);
 			this->Controls->Add(this->flowLayoutPanel13);
 			this->Controls->Add(this->flowLayoutPanel12);
@@ -809,10 +892,12 @@ namespace GameLogic {
 			this->Controls->Add(this->flowLayoutPanel31);
 			this->Controls->Add(this->FireDown);
 			this->Controls->Add(this->FireUp);
-			this->Controls->Add(this->button1);
 			this->Controls->Add(this->checkRule);
 			this->Controls->Add(this->groupBox1);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"LevelFour";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"LevelFour";
 			this->groupBox1->ResumeLayout(false);
 			this->flowLayoutPanel31->ResumeLayout(false);
@@ -837,8 +922,9 @@ namespace GameLogic {
 
 		}
 #pragma endregion
+		cli::array<Button^>^ but_ = gcnew cli::array<Button^>(3);
 		int matches = 0;
-		int score = 0;
+		bool vin = 1;
 		String^ tagButton;
 		Control^ panelOne;
 		Control^ panelTwo;
@@ -849,10 +935,12 @@ namespace GameLogic {
 		void ClickPanel(System::Object^ sender, System::EventArgs^ e);
 		void Result_Test();
 		void back();
+		void backClick(System::Object^ sender, System::EventArgs^ e);
 		// Метод для создания копии кнопки
 		Button^ copy_button(Button^ originalButton);
-private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e);
 
 
+
+private: System::Void button_back_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }

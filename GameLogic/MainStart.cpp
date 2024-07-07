@@ -60,3 +60,61 @@ System::Void GameLogic::MainStart::button5_Click(System::Object^ sender, System:
     this->Show();
     return System::Void();
 }
+
+System::Void GameLogic::MainStart::button_play_Click(System::Object^ sender, System::EventArgs^ e)
+{
+    GameForm^ gameForm = gcnew GameForm();
+    this->Hide();
+    gameForm->ShowDialog();
+    this->Show();
+}
+
+System::Void GameLogic::MainStart::button7_Click(System::Object^ sender, System::EventArgs^ e)
+{
+    settingsForm^ setForm = gcnew settingsForm();
+    setForm->musicClick += gcnew System::EventHandler(this, &GameLogic::MainStart::OnmusicClick);
+    this->Hide();
+    setForm->ShowDialog();
+    StreamReader^ readert = gcnew StreamReader("theme.txt");
+    String^ numt = readert->ReadLine();
+    readert->Close();
+    if (numt == "1")
+    {
+        MainStart::label1->ForeColor = Color::Black;
+        MainStart::BackColor = Color::FromArgb(249, 250, 209);
+        MainStart::button1->BackColor = Color::FromArgb(254, 219, 155);
+        MainStart::button1->ForeColor = Color::Black;
+
+        MainStart::button2->BackColor = Color::FromArgb(254, 219, 155);
+        MainStart::button2->ForeColor = Color::Black;
+
+       
+
+
+    }
+    //тёмная тема
+    else
+    {
+        MainStart::label1->ForeColor = Color::WhiteSmoke;
+        MainStart::BackColor = Color::FromArgb(26, 26, 26);
+        MainStart::button1->BackColor = Color::Gray;
+        MainStart::button1->ForeColor = Color::WhiteSmoke;
+
+        MainStart::button2->BackColor = Color::Gray;
+        MainStart::button2->ForeColor = Color::WhiteSmoke;
+
+       
+
+    }
+    this->Show();
+
+}
+
+//Форма о приложении
+System::Void GameLogic::MainStart::button6_Click(System::Object^ sender, System::EventArgs^ e)
+{
+    formAbout^ form = gcnew formAbout();
+    this->Hide();
+    form->ShowDialog();
+    this->Show();
+}

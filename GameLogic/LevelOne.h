@@ -8,6 +8,8 @@ namespace GameLogic {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::Media;
+	using namespace System::IO;
 
 	/// <summary>
 	/// Сводка для LevelOne
@@ -15,12 +17,51 @@ namespace GameLogic {
 	public ref class LevelOne : public System::Windows::Forms::Form
 	{
 	public:
+
 		LevelOne(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: добавьте код конструктора
-			//
+
+			StreamReader^ reader = gcnew StreamReader("volume.txt");
+			String^ num = reader->ReadLine();
+			reader->Close();
+
+			if (num == "1")
+			{
+				SoundPlayer^ player = gcnew SoundPlayer("friend-clock-2008.wav");
+				player->PlayLooping();
+
+			}
+
+			//Тема
+			StreamReader^ readert = gcnew StreamReader("theme.txt");
+			String^ numt = readert->ReadLine();
+			readert->Close();
+
+			if (numt == "1")
+			{
+				LevelOne::label1->ForeColor = Color::Black;
+				LevelOne::BackColor = Color::FromArgb(249, 250, 209);
+				LevelOne::label1->BackColor = Color::FromArgb(254, 242, 185);
+				LevelOne::panel1->BackColor = Color::FromArgb(254, 242, 185);
+				LevelOne::groupBox1->ForeColor = Color::Black;
+				LevelOne::button_back->BackColor = Color::FromArgb(254, 219, 155);
+				LevelOne::button_back->ForeColor = Color::Black;
+				LevelOne::checkRule->ForeColor = Color::Black;
+
+			}
+			//тёмная тема
+			else
+			{
+				LevelOne::label1->ForeColor = Color::WhiteSmoke;
+				LevelOne::BackColor = Color::FromArgb(26, 26, 26);
+				LevelOne::label1->BackColor = Color::FromArgb(26, 26, 26);
+				LevelOne::panel1->BackColor = Color::FromArgb(26, 26, 26);
+				LevelOne::groupBox1->ForeColor = Color::WhiteSmoke;
+				LevelOne::button_back->BackColor = Color::Gray;
+				LevelOne::button_back->ForeColor = Color::WhiteSmoke;
+				LevelOne::checkRule->ForeColor = Color::WhiteSmoke;
+			}
 		}
 
 	protected:
@@ -37,78 +78,7 @@ namespace GameLogic {
 
 	protected:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	private: System::Windows::Forms::GroupBox^ groupBox1;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel1;
 	private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel2;
@@ -118,12 +88,6 @@ namespace GameLogic {
 	private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel6;
 	private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel7;
 private: System::Windows::Forms::Button^ FireUp;
-
-
-
-
-
-
 
 
 
@@ -194,7 +158,11 @@ private: System::Windows::Forms::Button^ button28;
 private: System::Windows::Forms::Button^ FireDown;
 private: System::Windows::Forms::FlowLayoutPanel^ flowLayoutPanel25;
 private: System::Windows::Forms::CheckBox^ checkRule;
-private: System::Windows::Forms::Button^ button1;
+
+private: System::Windows::Forms::Label^ label1;
+private: System::Windows::Forms::Button^ button_back;
+private: System::Windows::Forms::Panel^ panel1;
+private: System::Windows::Forms::Button^ fireI;
 
 
 
@@ -317,7 +285,10 @@ private: System::Windows::Forms::Button^ button1;
 			this->FireDown = (gcnew System::Windows::Forms::Button());
 			this->flowLayoutPanel25 = (gcnew System::Windows::Forms::FlowLayoutPanel());
 			this->checkRule = (gcnew System::Windows::Forms::CheckBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->button_back = (gcnew System::Windows::Forms::Button());
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->fireI = (gcnew System::Windows::Forms::Button());
 			this->groupBox1->SuspendLayout();
 			this->flowLayoutPanel1->SuspendLayout();
 			this->flowLayoutPanel2->SuspendLayout();
@@ -353,7 +324,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->groupBox1->Controls->Add(this->panelI);
 			this->groupBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->groupBox1->Location = System::Drawing::Point(12, 12);
+			this->groupBox1->Location = System::Drawing::Point(12, 138);
 			this->groupBox1->Name = L"groupBox1";
 			this->groupBox1->Size = System::Drawing::Size(169, 51);
 			this->groupBox1->TabIndex = 14;
@@ -373,7 +344,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->flowLayoutPanel1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel1->Controls->Add(this->button17);
 			this->flowLayoutPanel1->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel1->Location = System::Drawing::Point(27, 79);
+			this->flowLayoutPanel1->Location = System::Drawing::Point(27, 248);
 			this->flowLayoutPanel1->Name = L"flowLayoutPanel1";
 			this->flowLayoutPanel1->Size = System::Drawing::Size(154, 24);
 			this->flowLayoutPanel1->TabIndex = 15;
@@ -399,7 +370,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->flowLayoutPanel2->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel2->Controls->Add(this->button5);
 			this->flowLayoutPanel2->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel2->Location = System::Drawing::Point(3, 106);
+			this->flowLayoutPanel2->Location = System::Drawing::Point(3, 275);
 			this->flowLayoutPanel2->Name = L"flowLayoutPanel2";
 			this->flowLayoutPanel2->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel2->TabIndex = 16;
@@ -426,7 +397,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->flowLayoutPanel3->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel3->Controls->Add(this->button3);
 			this->flowLayoutPanel3->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel3->Location = System::Drawing::Point(185, 106);
+			this->flowLayoutPanel3->Location = System::Drawing::Point(185, 275);
 			this->flowLayoutPanel3->Name = L"flowLayoutPanel3";
 			this->flowLayoutPanel3->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel3->TabIndex = 17;
@@ -453,7 +424,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->flowLayoutPanel4->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel4->Controls->Add(this->button18);
 			this->flowLayoutPanel4->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel4->Location = System::Drawing::Point(27, 263);
+			this->flowLayoutPanel4->Location = System::Drawing::Point(27, 432);
 			this->flowLayoutPanel4->Name = L"flowLayoutPanel4";
 			this->flowLayoutPanel4->Size = System::Drawing::Size(154, 24);
 			this->flowLayoutPanel4->TabIndex = 16;
@@ -479,7 +450,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->flowLayoutPanel5->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel5->Controls->Add(this->button19);
 			this->flowLayoutPanel5->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel5->Location = System::Drawing::Point(27, 446);
+			this->flowLayoutPanel5->Location = System::Drawing::Point(27, 615);
 			this->flowLayoutPanel5->Name = L"flowLayoutPanel5";
 			this->flowLayoutPanel5->Size = System::Drawing::Size(154, 24);
 			this->flowLayoutPanel5->TabIndex = 19;
@@ -505,7 +476,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->flowLayoutPanel6->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel6->Controls->Add(this->button2);
 			this->flowLayoutPanel6->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel6->Location = System::Drawing::Point(185, 289);
+			this->flowLayoutPanel6->Location = System::Drawing::Point(185, 458);
 			this->flowLayoutPanel6->Name = L"flowLayoutPanel6";
 			this->flowLayoutPanel6->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel6->TabIndex = 21;
@@ -531,7 +502,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->flowLayoutPanel7->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel7->Controls->Add(this->button6);
 			this->flowLayoutPanel7->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel7->Location = System::Drawing::Point(3, 289);
+			this->flowLayoutPanel7->Location = System::Drawing::Point(3, 458);
 			this->flowLayoutPanel7->Name = L"flowLayoutPanel7";
 			this->flowLayoutPanel7->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel7->TabIndex = 20;
@@ -561,7 +532,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->FireUp->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->FireUp->FlatAppearance->BorderSize = 0;
 			this->FireUp->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->FireUp->Location = System::Drawing::Point(263, 570);
+			this->FireUp->Location = System::Drawing::Point(276, 753);
 			this->FireUp->Name = L"FireUp";
 			this->FireUp->Size = System::Drawing::Size(21, 154);
 			this->FireUp->TabIndex = 3;
@@ -573,7 +544,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->flowLayoutPanel16->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel16->Controls->Add(this->button23);
 			this->flowLayoutPanel16->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel16->Location = System::Drawing::Point(403, 446);
+			this->flowLayoutPanel16->Location = System::Drawing::Point(403, 615);
 			this->flowLayoutPanel16->Name = L"flowLayoutPanel16";
 			this->flowLayoutPanel16->Size = System::Drawing::Size(154, 24);
 			this->flowLayoutPanel16->TabIndex = 29;
@@ -599,7 +570,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->flowLayoutPanel17->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel17->Controls->Add(this->button8);
 			this->flowLayoutPanel17->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel17->Location = System::Drawing::Point(561, 289);
+			this->flowLayoutPanel17->Location = System::Drawing::Point(561, 458);
 			this->flowLayoutPanel17->Name = L"flowLayoutPanel17";
 			this->flowLayoutPanel17->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel17->TabIndex = 31;
@@ -624,7 +595,7 @@ private: System::Windows::Forms::Button^ button1;
 			// 
 			this->flowLayoutPanel18->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel18->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel18->Location = System::Drawing::Point(379, 289);
+			this->flowLayoutPanel18->Location = System::Drawing::Point(379, 458);
 			this->flowLayoutPanel18->Name = L"flowLayoutPanel18";
 			this->flowLayoutPanel18->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel18->TabIndex = 30;
@@ -635,7 +606,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->flowLayoutPanel19->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel19->Controls->Add(this->button21);
 			this->flowLayoutPanel19->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel19->Location = System::Drawing::Point(403, 263);
+			this->flowLayoutPanel19->Location = System::Drawing::Point(403, 432);
 			this->flowLayoutPanel19->Name = L"flowLayoutPanel19";
 			this->flowLayoutPanel19->Size = System::Drawing::Size(154, 24);
 			this->flowLayoutPanel19->TabIndex = 24;
@@ -661,7 +632,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->flowLayoutPanel20->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel20->Controls->Add(this->button7);
 			this->flowLayoutPanel20->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel20->Location = System::Drawing::Point(561, 106);
+			this->flowLayoutPanel20->Location = System::Drawing::Point(561, 275);
 			this->flowLayoutPanel20->Name = L"flowLayoutPanel20";
 			this->flowLayoutPanel20->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel20->TabIndex = 27;
@@ -686,7 +657,7 @@ private: System::Windows::Forms::Button^ button1;
 			// 
 			this->flowLayoutPanel21->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel21->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel21->Location = System::Drawing::Point(379, 106);
+			this->flowLayoutPanel21->Location = System::Drawing::Point(379, 275);
 			this->flowLayoutPanel21->Name = L"flowLayoutPanel21";
 			this->flowLayoutPanel21->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel21->TabIndex = 25;
@@ -697,7 +668,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->flowLayoutPanel22->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel22->Controls->Add(this->button22);
 			this->flowLayoutPanel22->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel22->Location = System::Drawing::Point(403, 79);
+			this->flowLayoutPanel22->Location = System::Drawing::Point(403, 248);
 			this->flowLayoutPanel22->Name = L"flowLayoutPanel22";
 			this->flowLayoutPanel22->Size = System::Drawing::Size(154, 24);
 			this->flowLayoutPanel22->TabIndex = 23;
@@ -723,7 +694,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->flowLayoutPanel23->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel23->Controls->Add(this->button12);
 			this->flowLayoutPanel23->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel23->Location = System::Drawing::Point(286, 198);
+			this->flowLayoutPanel23->Location = System::Drawing::Point(286, 367);
 			this->flowLayoutPanel23->Name = L"flowLayoutPanel23";
 			this->flowLayoutPanel23->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel23->TabIndex = 35;
@@ -749,7 +720,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->flowLayoutPanel24->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel24->Controls->Add(this->button20);
 			this->flowLayoutPanel24->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel24->Location = System::Drawing::Point(219, 263);
+			this->flowLayoutPanel24->Location = System::Drawing::Point(219, 432);
 			this->flowLayoutPanel24->Name = L"flowLayoutPanel24";
 			this->flowLayoutPanel24->Size = System::Drawing::Size(154, 24);
 			this->flowLayoutPanel24->TabIndex = 34;
@@ -775,7 +746,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->flowLayoutPanel26->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel26->Controls->Add(this->button24);
 			this->flowLayoutPanel26->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel26->Location = System::Drawing::Point(588, 263);
+			this->flowLayoutPanel26->Location = System::Drawing::Point(588, 432);
 			this->flowLayoutPanel26->Name = L"flowLayoutPanel26";
 			this->flowLayoutPanel26->Size = System::Drawing::Size(154, 24);
 			this->flowLayoutPanel26->TabIndex = 36;
@@ -800,7 +771,7 @@ private: System::Windows::Forms::Button^ button1;
 			// 
 			this->flowLayoutPanel31->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel31->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel31->Location = System::Drawing::Point(771, 446);
+			this->flowLayoutPanel31->Location = System::Drawing::Point(771, 615);
 			this->flowLayoutPanel31->Name = L"flowLayoutPanel31";
 			this->flowLayoutPanel31->Size = System::Drawing::Size(154, 24);
 			this->flowLayoutPanel31->TabIndex = 44;
@@ -811,7 +782,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->flowLayoutPanel32->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel32->Controls->Add(this->button10);
 			this->flowLayoutPanel32->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel32->Location = System::Drawing::Point(929, 289);
+			this->flowLayoutPanel32->Location = System::Drawing::Point(929, 458);
 			this->flowLayoutPanel32->Name = L"flowLayoutPanel32";
 			this->flowLayoutPanel32->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel32->TabIndex = 46;
@@ -836,7 +807,7 @@ private: System::Windows::Forms::Button^ button1;
 			// 
 			this->flowLayoutPanel33->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel33->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel33->Location = System::Drawing::Point(747, 289);
+			this->flowLayoutPanel33->Location = System::Drawing::Point(747, 458);
 			this->flowLayoutPanel33->Name = L"flowLayoutPanel33";
 			this->flowLayoutPanel33->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel33->TabIndex = 45;
@@ -848,7 +819,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->flowLayoutPanel34->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel34->Controls->Add(this->button27);
 			this->flowLayoutPanel34->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel34->Location = System::Drawing::Point(771, 263);
+			this->flowLayoutPanel34->Location = System::Drawing::Point(771, 432);
 			this->flowLayoutPanel34->Name = L"flowLayoutPanel34";
 			this->flowLayoutPanel34->Size = System::Drawing::Size(154, 24);
 			this->flowLayoutPanel34->TabIndex = 39;
@@ -875,7 +846,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->flowLayoutPanel35->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel35->Controls->Add(this->button9);
 			this->flowLayoutPanel35->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel35->Location = System::Drawing::Point(929, 106);
+			this->flowLayoutPanel35->Location = System::Drawing::Point(929, 275);
 			this->flowLayoutPanel35->Name = L"flowLayoutPanel35";
 			this->flowLayoutPanel35->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel35->TabIndex = 42;
@@ -901,7 +872,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->flowLayoutPanel36->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel36->Controls->Add(this->button16);
 			this->flowLayoutPanel36->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel36->Location = System::Drawing::Point(747, 106);
+			this->flowLayoutPanel36->Location = System::Drawing::Point(747, 275);
 			this->flowLayoutPanel36->Name = L"flowLayoutPanel36";
 			this->flowLayoutPanel36->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel36->TabIndex = 40;
@@ -924,9 +895,10 @@ private: System::Windows::Forms::Button^ button1;
 			// 
 			// flowLayoutPanel37
 			// 
+			this->flowLayoutPanel37->BackColor = System::Drawing::Color::Transparent;
 			this->flowLayoutPanel37->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel37->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel37->Location = System::Drawing::Point(771, 79);
+			this->flowLayoutPanel37->Location = System::Drawing::Point(771, 248);
 			this->flowLayoutPanel37->Name = L"flowLayoutPanel37";
 			this->flowLayoutPanel37->Size = System::Drawing::Size(154, 24);
 			this->flowLayoutPanel37->TabIndex = 38;
@@ -938,7 +910,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->flowLayoutPanel38->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel38->Controls->Add(this->button25);
 			this->flowLayoutPanel38->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel38->Location = System::Drawing::Point(956, 239);
+			this->flowLayoutPanel38->Location = System::Drawing::Point(956, 408);
 			this->flowLayoutPanel38->Name = L"flowLayoutPanel38";
 			this->flowLayoutPanel38->Size = System::Drawing::Size(154, 24);
 			this->flowLayoutPanel38->TabIndex = 49;
@@ -963,7 +935,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->flowLayoutPanel39->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel39->Controls->Add(this->button26);
 			this->flowLayoutPanel39->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel39->Location = System::Drawing::Point(956, 289);
+			this->flowLayoutPanel39->Location = System::Drawing::Point(956, 458);
 			this->flowLayoutPanel39->Name = L"flowLayoutPanel39";
 			this->flowLayoutPanel39->Size = System::Drawing::Size(154, 24);
 			this->flowLayoutPanel39->TabIndex = 50;
@@ -988,7 +960,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->flowLayoutPanel40->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel40->Controls->Add(this->button29);
 			this->flowLayoutPanel40->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel40->Location = System::Drawing::Point(1143, 79);
+			this->flowLayoutPanel40->Location = System::Drawing::Point(1143, 248);
 			this->flowLayoutPanel40->Name = L"flowLayoutPanel40";
 			this->flowLayoutPanel40->Size = System::Drawing::Size(154, 24);
 			this->flowLayoutPanel40->TabIndex = 38;
@@ -1014,7 +986,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->flowLayoutPanel41->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel41->Controls->Add(this->button11);
 			this->flowLayoutPanel41->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel41->Location = System::Drawing::Point(1119, 106);
+			this->flowLayoutPanel41->Location = System::Drawing::Point(1119, 275);
 			this->flowLayoutPanel41->Name = L"flowLayoutPanel41";
 			this->flowLayoutPanel41->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel41->TabIndex = 40;
@@ -1040,7 +1012,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->flowLayoutPanel42->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel42->Controls->Add(this->button14);
 			this->flowLayoutPanel42->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel42->Location = System::Drawing::Point(1301, 106);
+			this->flowLayoutPanel42->Location = System::Drawing::Point(1301, 275);
 			this->flowLayoutPanel42->Name = L"flowLayoutPanel42";
 			this->flowLayoutPanel42->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel42->TabIndex = 42;
@@ -1065,7 +1037,7 @@ private: System::Windows::Forms::Button^ button1;
 			// 
 			this->flowLayoutPanel43->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel43->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel43->Location = System::Drawing::Point(1143, 263);
+			this->flowLayoutPanel43->Location = System::Drawing::Point(1143, 432);
 			this->flowLayoutPanel43->Name = L"flowLayoutPanel43";
 			this->flowLayoutPanel43->Size = System::Drawing::Size(154, 24);
 			this->flowLayoutPanel43->TabIndex = 3;
@@ -1077,7 +1049,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->flowLayoutPanel44->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel44->Controls->Add(this->button13);
 			this->flowLayoutPanel44->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel44->Location = System::Drawing::Point(1119, 289);
+			this->flowLayoutPanel44->Location = System::Drawing::Point(1119, 458);
 			this->flowLayoutPanel44->Name = L"flowLayoutPanel44";
 			this->flowLayoutPanel44->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel44->TabIndex = 45;
@@ -1103,7 +1075,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->flowLayoutPanel45->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel45->Controls->Add(this->button15);
 			this->flowLayoutPanel45->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel45->Location = System::Drawing::Point(1301, 289);
+			this->flowLayoutPanel45->Location = System::Drawing::Point(1301, 458);
 			this->flowLayoutPanel45->Name = L"flowLayoutPanel45";
 			this->flowLayoutPanel45->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel45->TabIndex = 46;
@@ -1129,7 +1101,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->flowLayoutPanel46->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel46->Controls->Add(this->button28);
 			this->flowLayoutPanel46->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel46->Location = System::Drawing::Point(1143, 446);
+			this->flowLayoutPanel46->Location = System::Drawing::Point(1143, 615);
 			this->flowLayoutPanel46->Name = L"flowLayoutPanel46";
 			this->flowLayoutPanel46->Size = System::Drawing::Size(154, 24);
 			this->flowLayoutPanel46->TabIndex = 44;
@@ -1158,7 +1130,7 @@ private: System::Windows::Forms::Button^ button1;
 			this->FireDown->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->FireDown->FlatAppearance->BorderSize = 0;
 			this->FireDown->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->FireDown->Location = System::Drawing::Point(290, 627);
+			this->FireDown->Location = System::Drawing::Point(303, 776);
 			this->FireDown->Name = L"FireDown";
 			this->FireDown->Size = System::Drawing::Size(154, 21);
 			this->FireDown->TabIndex = 51;
@@ -1169,7 +1141,7 @@ private: System::Windows::Forms::Button^ button1;
 			// 
 			this->flowLayoutPanel25->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->flowLayoutPanel25->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->flowLayoutPanel25->Location = System::Drawing::Point(655, 198);
+			this->flowLayoutPanel25->Location = System::Drawing::Point(655, 367);
 			this->flowLayoutPanel25->Name = L"flowLayoutPanel25";
 			this->flowLayoutPanel25->Size = System::Drawing::Size(24, 154);
 			this->flowLayoutPanel25->TabIndex = 37;
@@ -1180,30 +1152,78 @@ private: System::Windows::Forms::Button^ button1;
 			this->checkRule->AutoSize = true;
 			this->checkRule->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->checkRule->Location = System::Drawing::Point(189, 31);
+			this->checkRule->Location = System::Drawing::Point(899, 685);
 			this->checkRule->Name = L"checkRule";
-			this->checkRule->Size = System::Drawing::Size(409, 29);
+			this->checkRule->Size = System::Drawing::Size(427, 29);
 			this->checkRule->TabIndex = 53;
-			this->checkRule->Text = L"Не уведомлять о не правильном ответе";
+			this->checkRule->Text = L"Не уведомлять при неправильном выборе\r\n";
 			this->checkRule->UseVisualStyleBackColor = true;
 			// 
-			// button1
+			// label1
 			// 
-			this->button1->Location = System::Drawing::Point(189, 12);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(87, 21);
-			this->button1->TabIndex = 54;
-			this->button1->Text = L"Условие";
-			this->button1->UseVisualStyleBackColor = true;
-			this->button1->Click += gcnew System::EventHandler(this, &LevelOne::button1_Click);
+			this->label1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(254)), static_cast<System::Int32>(static_cast<System::Byte>(242)),
+				static_cast<System::Int32>(static_cast<System::Byte>(185)));
+			this->label1->Font = (gcnew System::Drawing::Font(L"Calibri", 18, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label1->Location = System::Drawing::Point(2, 0);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(1334, 90);
+			this->label1->TabIndex = 55;
+			this->label1->Text = L"Нужно переместить только одну спичку в выложенном арифметическом примере «8+3-4=0"
+				L"» так, чтобы получилось \r\nверное равенство (можно менять и знаки, и цифры).";
+			this->label1->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
+			// 
+			// button_back
+			// 
+			this->button_back->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(254)), static_cast<System::Int32>(static_cast<System::Byte>(219)),
+				static_cast<System::Int32>(static_cast<System::Byte>(155)));
+			this->button_back->FlatAppearance->BorderSize = 0;
+			this->button_back->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button_back->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->button_back->Location = System::Drawing::Point(12, 672);
+			this->button_back->Name = L"button_back";
+			this->button_back->Size = System::Drawing::Size(230, 42);
+			this->button_back->TabIndex = 56;
+			this->button_back->Text = L"Вернуться";
+			this->button_back->UseVisualStyleBackColor = false;
+			this->button_back->Click += gcnew System::EventHandler(this, &LevelOne::button_back_Click);
+			// 
+			// panel1
+			// 
+			this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(251)), static_cast<System::Int32>(static_cast<System::Byte>(252)),
+				static_cast<System::Int32>(static_cast<System::Byte>(211)));
+			this->panel1->Location = System::Drawing::Point(2, 1);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(1334, 90);
+			this->panel1->TabIndex = 57;
+			// 
+			// fireI
+			// 
+			this->fireI->BackColor = System::Drawing::Color::Transparent;
+			this->fireI->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"fireI.BackgroundImage")));
+			this->fireI->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->fireI->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->fireI->FlatAppearance->BorderSize = 0;
+			this->fireI->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->fireI->Location = System::Drawing::Point(540, 792);
+			this->fireI->Name = L"fireI";
+			this->fireI->Size = System::Drawing::Size(154, 21);
+			this->fireI->TabIndex = 58;
+			this->fireI->UseVisualStyleBackColor = false;
+			this->fireI->Click += gcnew System::EventHandler(this, &LevelOne::backClick);
 			// 
 			// LevelOne
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(249)), static_cast<System::Int32>(static_cast<System::Byte>(250)),
+				static_cast<System::Int32>(static_cast<System::Byte>(209)));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->ClientSize = System::Drawing::Size(1335, 490);
-			this->Controls->Add(this->button1);
+			this->ClientSize = System::Drawing::Size(1335, 728);
+			this->Controls->Add(this->fireI);
+			this->Controls->Add(this->button_back);
+			this->Controls->Add(this->label1);
 			this->Controls->Add(this->checkRule);
 			this->Controls->Add(this->FireDown);
 			this->Controls->Add(this->flowLayoutPanel39);
@@ -1242,7 +1262,11 @@ private: System::Windows::Forms::Button^ button1;
 			this->Controls->Add(this->flowLayoutPanel2);
 			this->Controls->Add(this->flowLayoutPanel1);
 			this->Controls->Add(this->groupBox1);
+			this->Controls->Add(this->panel1);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
+			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"LevelOne";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"LevelOne";
 			this->groupBox1->ResumeLayout(false);
 			this->flowLayoutPanel1->ResumeLayout(false);
@@ -1289,6 +1313,8 @@ private: System::Windows::Forms::Button^ button1;
 		void back();
 		// Метод для создания копии кнопки
 		Button^ copy_button(Button^ originalButton);
-private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e);
+		//Кнопка вернуться назад
+	private: System::Void button_back_Click(System::Object^ sender, System::EventArgs^ e);
+		   void backClick(System::Object^ sender, System::EventArgs^ e);
 };
 }

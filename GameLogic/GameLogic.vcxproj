@@ -114,20 +114,33 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="formAbout.cpp" />
+    <ClCompile Include="GameForm.cpp" />
     <ClCompile Include="LevelFive.cpp" />
     <ClCompile Include="LevelFour.cpp" />
     <ClCompile Include="LevelOne.cpp" />
     <ClCompile Include="LevelThree.cpp" />
     <ClCompile Include="LevelTwo.cpp" />
+    <ClCompile Include="MainForm.cpp" />
     <ClCompile Include="MainStart.cpp" />
+    <ClCompile Include="settingsForm.cpp" />
+    <ClCompile Include="Установщик.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="formAbout.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="GameForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="LevelFive.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -143,11 +156,29 @@
     <ClInclude Include="LevelTwo.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="MainForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="MainStart.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="settingsForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="Установщик.h">
+      <FileType>CppClass</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="formAbout.resx">
+      <DependentUpon>formAbout.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameForm.resx">
+      <DependentUpon>GameForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LevelFive.resx">
+      <DependentUpon>LevelFive.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LevelFour.resx">
       <DependentUpon>LevelFour.h</DependentUpon>
     </EmbeddedResource>
@@ -160,8 +191,14 @@
     <EmbeddedResource Include="LevelTwo.resx">
       <DependentUpon>LevelTwo.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainStart.resx">
       <DependentUpon>MainStart.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="settingsForm.resx">
+      <DependentUpon>settingsForm.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

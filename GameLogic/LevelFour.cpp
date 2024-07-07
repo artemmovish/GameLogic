@@ -23,6 +23,8 @@ void GameLogic::LevelFour::ClickBut(System::Object^ sender, System::EventArgs^ e
 		Button^ button = dynamic_cast<Button^>(sender);
 		if (button != nullptr)
 		{
+			but_[matches] = button;
+			
 			//Сохранение панели
 			if (matches == 0)
 			{
@@ -39,27 +41,56 @@ void GameLogic::LevelFour::ClickBut(System::Object^ sender, System::EventArgs^ e
 			matches++;
 			// копирование кнопки из шаблона (под формой)
 			Button^ but = gcnew Button();
-			but = copy_button(FireDown);
+			but = copy_button(fireI_);
 			panelI->Controls->Add(but);
 			// подсчет очков
 			try
 			{
 				if (button->Tag->ToString() == "1")
 				{
-					score++;
+					button->Parent = nullptr;
 				}
 				if (matches == 3)
 				{
-					if (score == 3)
+					if (vin)
 					{
 						MessageBox::Show("Вы победили");
+						StreamReader^ reader = gcnew StreamReader("volume.txt");
+						String^ num = reader->ReadLine();
+						reader->Close();
+
+						if (num == "1")
+						{
+							SoundPlayer^ player = gcnew SoundPlayer("lets-see-q1-extra-large.wav");
+							player->PlayLooping();
+
+						}
+						StreamReader^ reader1 = gcnew StreamReader("progress.txt");
+						try
+						{
+							String^ number = reader1->ReadLine();
+							int level = Convert::ToInt32(number);
+							reader1->Close();
+							if (level <= 4)
+							{
+								StreamWriter^ writer = gcnew StreamWriter("progress.txt");
+								writer->Write("4");
+								writer->Close();
+
+							}
+
+						}
+						catch (Exception^ ex)
+						{
+							MessageBox::Show(ex->Message);
+						}
 						this->Close();
 					}
 					else
 					{
 						if (!checkRule->Checked)
 						{
-							MessageBox::Show("Вы проиграли");
+							MessageBox::Show("Неверно");
 							back();
 						}
 						else
@@ -71,11 +102,13 @@ void GameLogic::LevelFour::ClickBut(System::Object^ sender, System::EventArgs^ e
 			}
 			catch (Exception^ ex)
 			{
+				button->Parent = nullptr;
+				vin = 0;
 				if (matches == 3)
 				{
 					if (!checkRule->Checked)
 					{
-						MessageBox::Show("Вы проиграли");
+						MessageBox::Show("Неверно");
 						back();
 					}
 					else
@@ -84,8 +117,6 @@ void GameLogic::LevelFour::ClickBut(System::Object^ sender, System::EventArgs^ e
 					}
 				}
 			}
-			// Удаление кнопки
-			delete button;
 		}
 	}
 }
@@ -102,45 +133,34 @@ void GameLogic::LevelFour::Result_Test()
 
 void GameLogic::LevelFour::back()
 {
-	matches = 0;
-	score = 0;
-	if (panelOne->Width < 30)
-	{
-		Button^ but = gcnew Button();
-		but = copy_button(FireUp);
-		panelOne->Controls->Add(but);
-	}
-	else
-	{
-		Button^ but = gcnew Button();
-		but = copy_button(FireDown);
-		panelOne->Controls->Add(but);
-	}
-	if (panelTwo->Width < 30)
-	{
-		Button^ but = gcnew Button();
-		but = copy_button(FireUp);
-		panelTwo->Controls->Add(but);
-	}
-	else
-	{
-		Button^ but = gcnew Button();
-		but = copy_button(FireDown);
-		panelTwo->Controls->Add(but);
-	}
-	if (panelThree->Width < 30)
-	{
-		Button^ but = gcnew Button();
-		but = copy_button(FireUp);
-		panelThree->Controls->Add(but);
-	}
-	else
-	{
-		Button^ but = gcnew Button();
-		but = copy_button(FireDown);
-		panelThree->Controls->Add(but);
-	}
 	panelI->Controls->Clear();
+	matches = 0;
+	vin = 1;
+	but_[0]->Parent = panelOne;
+	but_[1]->Parent = panelTwo;
+	but_[2]->Parent = panelThree;
+
+	panelOne->Controls->Add(but_[0]);
+	panelTwo->Controls->Add(but_[1]);
+	panelThree->Controls->Add(but_[2]);
+}
+
+
+void GameLogic::LevelFour::backClick(System::Object^ sender, System::EventArgs^ e)
+{
+	/*vin = 1;
+	if (matches == 1)
+	{
+		matches--;
+		but_[0]->Parent = panelOne;
+		panelI->Controls->RemoveAt(this->panelI->Controls->Count - 1);
+	}
+	else
+	{
+		matches--;
+		but_[1]->Parent = panelTwo;
+		panelI->Controls->RemoveAt(panelI->Controls->Count - 1);
+	}*/
 }
 
 Button^ GameLogic::LevelFour::copy_button(Button^ originalButton)
@@ -173,14 +193,25 @@ Button^ GameLogic::LevelFour::copy_button(Button^ originalButton)
 	newButton->Padding = originalButton->Padding;
 
 	// Копирование событий
-	newButton->Click += gcnew EventHandler(this, &LevelFour::ClickBut);
+	newButton->Click += gcnew EventHandler(this, &LevelFour::backClick);
 
 	return newButton;
 }
 
-System::Void GameLogic::LevelFour::button1_Click(System::Object^ sender, System::EventArgs^ e)
+System::Void GameLogic::LevelFour::button_back_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	MessageBox::Show("Уберите 3 спички так, что бы число 993 уменьшилось.");
-	return System::Void();
+	this->Close();
+
+	StreamReader^ reader = gcnew StreamReader("volume.txt");
+	String^ num = reader->ReadLine();
+	reader->Close();
+
+	if (num == "1")
+	{
+		SoundPlayer^ player = gcnew SoundPlayer("lets-see-q1-extra-large.wav");
+		player->PlayLooping();
+	}
 }
+
+
 

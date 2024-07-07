@@ -2,6 +2,8 @@
 
 #include "LevelThree.h"
 using namespace System::Windows::Forms;
+using namespace System::IO;
+
 void GameLogic::LevelThree::delete_button(Button^ button)
 {
 	if (button != nullptr)
@@ -30,7 +32,7 @@ void GameLogic::LevelThree::ClickBut(System::Object^ sender, System::EventArgs^ 
 			// копирование кнопки из шаблона (под формой)
 			Button^ but = gcnew Button();
 			but = copy_button(FireDown);
-			panelI->Controls->Add(but);
+			panelI->Controls->Add(fireI);
 			// Сохранение Tag кнопки
 			try
 			{
@@ -78,13 +80,44 @@ void GameLogic::LevelThree::ClickPanel(System::Object^ sender, System::EventArgs
 				if (tagButton == panel->Tag->ToString())
 				{
 					MessageBox::Show("Вы победили");
+					StreamReader^ reader = gcnew StreamReader("volume.txt");
+					String^ num = reader->ReadLine();
+					reader->Close();
+
+					if (num == "1")
+					{
+						SoundPlayer^ player = gcnew SoundPlayer("lets-see-q1-extra-large.wav");
+						player->PlayLooping();
+
+					}
+					StreamReader^ reader1 = gcnew StreamReader("progress.txt");
+					try
+					{
+						String^ number = reader1->ReadLine();
+						int level = Convert::ToInt32(number);
+						reader1->Close();
+						if (level <= 3)
+						{
+							StreamWriter^ writer = gcnew StreamWriter("progress.txt");
+							writer->Write("3");
+							writer->Close();
+
+						}
+
+					}
+					catch (Exception^ ex)
+					{
+						MessageBox::Show(ex->Message);
+					}
+
+
 					this->Close();
 				}
 				else
 				{
 					if (!checkRule->Checked)
 					{
-						MessageBox::Show("Вы проиграли");
+						MessageBox::Show("Неверно");
 						back();
 					}
 					else
@@ -97,7 +130,7 @@ void GameLogic::LevelThree::ClickPanel(System::Object^ sender, System::EventArgs
 			{
 				if (!checkRule->Checked)
 				{
-					MessageBox::Show("Вы проиграли");
+					MessageBox::Show("Неверно");
 					back();
 				}
 				else
@@ -122,20 +155,23 @@ void GameLogic::LevelThree::Result_Test()
 
 void GameLogic::LevelThree::back()
 {
-	tagButton = "";
+	panelTwo->Controls->Clear();
+
 	if (panelOne->Width < 30)
 	{
 		Button^ but = gcnew Button();
 		but = copy_button(FireUp);
+		but->Tag = tagButton;
 		panelOne->Controls->Add(but);
 	}
 	else
 	{
 		Button^ but = gcnew Button();
 		but = copy_button(FireDown);
+		but->Tag = tagButton;
 		panelOne->Controls->Add(but);
 	}
-	panelTwo->Controls->Clear();
+	tagButton = "";
 }
 
 Button^ GameLogic::LevelThree::copy_button(Button^ originalButton)
@@ -173,8 +209,42 @@ Button^ GameLogic::LevelThree::copy_button(Button^ originalButton)
 	return newButton;
 }
 
-System::Void GameLogic::LevelThree::button1_Click(System::Object^ sender, System::EventArgs^ e)
+System::Void GameLogic::LevelThree::button_back_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	MessageBox::Show("Нужно переместить только одну спичку в выложенном спичками арифметическом примере «3+1=3» так, чтобы получилось верное равенство (можно менять знаки и цифры).");
-	return System::Void();
+	this->Close();
+
+	StreamReader^ reader = gcnew StreamReader("volume.txt");
+	String^ num = reader->ReadLine();
+	reader->Close();
+
+	if (num == "1")
+	{
+		SoundPlayer^ player = gcnew SoundPlayer("lets-see-q1-extra-large.wav");
+		player->PlayLooping();
+	}
 }
+
+void GameLogic::LevelThree::backClick(System::Object^ sender, System::EventArgs^ e)
+{
+	matches = 0;
+
+	panelI->Controls->Clear();
+	if (panelOne->Width < 30)
+	{
+		Button^ but = gcnew Button();
+		but = copy_button(FireUp);
+		but->Tag = tagButton;
+		panelOne->Controls->Add(but);
+	}
+	else
+	{
+		Button^ but = gcnew Button();
+		but = copy_button(FireDown);
+		but->Tag = tagButton;
+		panelOne->Controls->Add(but);
+	}
+	tagButton = "";
+}
+
+
+

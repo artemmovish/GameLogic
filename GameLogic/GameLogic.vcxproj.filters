@@ -39,6 +39,11 @@
     <ClCompile Include="LevelFive.cpp">
       <Filter>Уровень 5</Filter>
     </ClCompile>
+    <ClCompile Include="MainForm.cpp" />
+    <ClCompile Include="GameForm.cpp" />
+    <ClCompile Include="settingsForm.cpp" />
+    <ClCompile Include="formAbout.cpp" />
+    <ClCompile Include="Установщик.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainStart.h">
@@ -59,5 +64,10 @@
     <ClInclude Include="LevelFive.h">
       <Filter>Уровень 5</Filter>
     </ClInclude>
+    <ClInclude Include="MainForm.h" />
+    <ClInclude Include="GameForm.h" />
+    <ClInclude Include="settingsForm.h" />
+    <ClInclude Include="formAbout.h" />
+    <ClInclude Include="Установщик.h" />
   </ItemGroup>
 </Project>
